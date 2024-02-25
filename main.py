@@ -33,7 +33,9 @@ def read_root():
 def get_weather(location: str):
     params = {
         'access_key': WEATHERSTACK_API_KEY,
-        'query': location
+        'query': location,
+        'forecast_days': 1,
+        'hourly': 1
     }
     response = requests.get(WEATHERSTACK_BASE_URL, params=params)
     if response.status_code == 200:
