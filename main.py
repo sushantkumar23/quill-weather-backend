@@ -3,11 +3,26 @@ import os
 import requests
 
 from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
 
 WEATHERSTACK_API_KEY = os.getenv('WEATHERSTACK_API_KEY')
 WEATHERSTACK_BASE_URL = 'http://api.weatherstack.com/current'
 
 app = FastAPI(title="Quill Weather API")
+
+origins = [
+    "http://localhost:3000",
+    "https://quill-weather.vercel.app",
+    "https://quill-weather-frontend.vercel.app"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def read_root():
