@@ -25,7 +25,7 @@ def get_weather(location: str):
         data = response.json()
         print("data: ", data)
         if 'current' in data:
-            return data['current']
+            return data
         else:
             raise HTTPException(status_code=404, detail="Weather information not found")
     else:
