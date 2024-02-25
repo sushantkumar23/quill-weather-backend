@@ -1,0 +1,15 @@
+{
+  "devCommand": "uvicorn main:app --workers 4",
+  "builds": [
+    {
+      "src": "main.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "main.py"
+    }
+  ]
+}
